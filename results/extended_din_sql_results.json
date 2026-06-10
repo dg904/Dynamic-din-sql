@@ -1,0 +1,1037 @@
+{
+  "dataset": "Spider dev sample",
+  "sample_size": 50,
+  "k_examples": 5,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "nvidia_model": "meta/llama-3.3-70b-instruct",
+  "runs": {
+    "static": {
+      "summary": {
+        "n": 50,
+        "execution_accuracy": 74.0,
+        "exact_match": 34.0,
+        "by_difficulty": {
+          "easy": {
+            "n": 12,
+            "execution_accuracy": 91.67,
+            "exact_match": 83.33
+          },
+          "medium": {
+            "n": 13,
+            "execution_accuracy": 84.62,
+            "exact_match": 30.77
+          },
+          "hard": {
+            "n": 12,
+            "execution_accuracy": 58.33,
+            "exact_match": 8.33
+          },
+          "extra": {
+            "n": 13,
+            "execution_accuracy": 61.54,
+            "exact_match": 15.38
+          }
+        },
+        "completed_generations": 50,
+        "generation_success_rate": 100.0,
+        "generated_only": {
+          "n": 50,
+          "execution_accuracy": 74.0,
+          "exact_match": 34.0,
+          "by_difficulty": {
+            "easy": {
+              "n": 12,
+              "execution_accuracy": 91.67,
+              "exact_match": 83.33
+            },
+            "medium": {
+              "n": 13,
+              "execution_accuracy": 84.62,
+              "exact_match": 30.77
+            },
+            "hard": {
+              "n": 12,
+              "execution_accuracy": 58.33,
+              "exact_match": 8.33
+            },
+            "extra": {
+              "n": 13,
+              "execution_accuracy": 61.54,
+              "exact_match": 15.38
+            }
+          }
+        },
+        "avg_latency_sec": 6.342,
+        "api_statuses": {
+          "nvidia_ok": 50
+        }
+      },
+      "cases": [
+        {
+          "db_id": "world_1",
+          "question": "How many unique languages are spoken in the world?",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT LANGUAGE) FROM countrylanguage",
+          "predicted": "SELECT COUNT(DISTINCT Language) FROM countrylanguage",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "find the minimum and maximum number of products of all stores.",
+          "difficulty": "easy",
+          "gold": "SELECT min(Number_products) ,  max(Number_products) FROM shop",
+          "predicted": "SELECT MIN(Number_products), MAX(Number_products) FROM shop",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "orchestra",
+          "question": "What are the names of conductors, sorted descending by the number of years they have worked?",
+          "difficulty": "easy",
+          "gold": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC",
+          "predicted": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+          "difficulty": "easy",
+          "gold": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+          "predicted": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "Count the number of distinct store locations.",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT LOCATION) FROM shop",
+          "predicted": "SELECT COUNT(DISTINCT Location) FROM shop",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "student_transcripts_tracking",
+          "question": "How many departments offer any degree?",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT department_id) FROM Degree_Programs",
+          "predicted": "SELECT COUNT(DISTINCT T1.department_id) FROM Degree_Programs AS T1 JOIN Departments AS T2 ON T1.department_id = T2.department_id",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "List the arrival date and the departure date for all the dogs.",
+          "difficulty": "easy",
+          "gold": "SELECT date_arrived ,  date_departed FROM Dogs",
+          "predicted": "SELECT date_arrived, date_departed FROM Dogs",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the names and areas of countries with the top 5 largest area?",
+          "difficulty": "easy",
+          "gold": "SELECT Name ,  SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 5",
+          "predicted": "SELECT Name, SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 5",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "How many templates do we have?",
+          "difficulty": "easy",
+          "gold": "SELECT count(*) FROM Templates",
+          "predicted": "SELECT COUNT(*) FROM Templates",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "How much does the most expensive charge type costs?",
+          "difficulty": "easy",
+          "gold": "SELECT max(charge_amount) FROM Charges",
+          "predicted": "SELECT MAX(charge_amount) FROM Charges",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "What are all the possible breed type and size type combinations?",
+          "difficulty": "easy",
+          "gold": "SELECT DISTINCT breed_code ,  size_code FROM dogs",
+          "predicted": "SELECT T1.breed_name, T2.size_description FROM Breeds AS T1 JOIN Dogs AS T3 ON T1.breed_code = T3.breed_code JOIN Sizes AS T2 ON T3.size_code = T2.size_code",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "voter_1",
+          "question": "List the vote ids, phone numbers and states of all votes.",
+          "difficulty": "easy",
+          "gold": "SELECT vote_id ,  phone_number ,  state FROM votes",
+          "predicted": "SELECT vote_id, phone_number, state FROM VOTES",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "Show the stadium name and the number of concerts in each stadium.",
+          "difficulty": "medium",
+          "gold": "SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",
+          "predicted": "SELECT T1.Name, COUNT(T2.concert_ID) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Name",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Count the number of countries in Asia.",
+          "difficulty": "medium",
+          "gold": "SELECT count(*) FROM country WHERE continent  =  \"Asia\"",
+          "predicted": "SELECT COUNT(*) FROM country WHERE Continent = 'Asia'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "student_transcripts_tracking",
+          "question": "What is the zip code for Port Chelsea?",
+          "difficulty": "medium",
+          "gold": "SELECT zip_postcode FROM Addresses WHERE city  =  'Port Chelsea'",
+          "predicted": "SELECT zip_postcode FROM Addresses WHERE city = 'Port Chelsea'",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "singer",
+          "question": "What is the msot common singer citizenship?",
+          "difficulty": "medium",
+          "gold": "SELECT Citizenship FROM singer GROUP BY Citizenship ORDER BY COUNT(*) DESC LIMIT 1",
+          "predicted": "SELECT Citizenship FROM singer GROUP BY Citizenship ORDER BY COUNT(*) DESC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "pets_1",
+          "question": "For students who have pets, how many pets does each student have?",
+          "difficulty": "medium",
+          "gold": "SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid",
+          "predicted": "SELECT T1.StuID, COUNT(T2.PetID) FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "Show the name of the conductor that has conducted the most number of orchestras.",
+          "difficulty": "medium",
+          "gold": "SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1",
+          "predicted": "SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.Conductor_ID ORDER BY COUNT(T2.Orchestra_ID) DESC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "tvshow",
+          "question": "What are the languages used by the least number of TV Channels and how many channels use it?",
+          "difficulty": "medium",
+          "gold": "SELECT LANGUAGE ,  count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC LIMIT 1;",
+          "predicted": "SELECT Language, COUNT(*) FROM TV_Channel GROUP BY Language ORDER BY COUNT(*) ASC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Which city is the most frequent source airport?",
+          "difficulty": "medium",
+          "gold": "SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1",
+          "predicted": "SELECT City FROM airports WHERE AirportCode = (SELECT SourceAirport FROM flights GROUP BY SourceAirport ORDER BY COUNT(*) DESC LIMIT 1)",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "Return the template type code of the template that is used by a document named Data base.",
+          "difficulty": "medium",
+          "gold": "SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T2.document_name  =  \"Data base\"",
+          "predicted": "SELECT T1.Template_Type_Code FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID WHERE T2.Document_Name = 'Data base'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What is the total population of Gelderland district?",
+          "difficulty": "medium",
+          "gold": "SELECT sum(Population) FROM city WHERE District  =  \"Gelderland\"",
+          "predicted": "SELECT SUM(Population) FROM city WHERE District = 'Gelderland'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "poker_player",
+          "question": "What are the names of people who are not from Russia?",
+          "difficulty": "medium",
+          "gold": "SELECT Name FROM people WHERE Nationality != \"Russia\"",
+          "predicted": "SELECT Name FROM people WHERE Nationality != 'Russia'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "What are all distinct countries where singers above age 20 are from?",
+          "difficulty": "medium",
+          "gold": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+          "predicted": "SELECT DISTINCT Country FROM singer WHERE Age > 20",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Find the number of flights landing in the city of Aberdeen or Abilene.",
+          "difficulty": "hard",
+          "gold": "SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  \"Aberdeen\" OR T2.city  =  \"Abilene\"",
+          "predicted": "SELECT COUNT(*) FROM flights AS T1 JOIN airports AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.City = 'Aberdeen' OR T2.City = 'Abilene'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Count the number of United Airlines flights that arrive in Aberdeen.",
+          "difficulty": "hard",
+          "gold": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  \"Aberdeen\" AND T3.Airline  =  \"United Airlines\"",
+          "predicted": "SELECT COUNT(*) FROM flights AS T1 JOIN airports AS T2 ON T1.DestAirport = T2.AirportCode JOIN airlines AS T3 ON T1.Airline = T3.Abbreviation WHERE T2.City = 'Aberdeen' AND T3.Airline = 'United Airlines'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "What are the emails of the professionals living in either the state of Hawaii or the state of Wisconsin?",
+          "difficulty": "hard",
+          "gold": "SELECT email_address FROM Professionals WHERE state  =  'Hawaii' OR state  =  'Wisconsin'",
+          "predicted": "SELECT email_address FROM Professionals WHERE state = 'Hawaii' OR state = 'Wisconsin'",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "Which professionals have done at least two types of treatments? List the professional id and cell phone.",
+          "difficulty": "hard",
+          "gold": "SELECT T1.professional_id ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2",
+          "predicted": "SELECT T1.professional_id, T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id, T1.cell_number HAVING COUNT(DISTINCT T2.treatment_type_code) >= 2",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "Show the years in which orchestras that have given more than one performance are founded.",
+          "difficulty": "hard",
+          "gold": "SELECT Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID  =  T2.Orchestra_ID GROUP BY T2.Orchestra_ID HAVING COUNT(*)  >  1",
+          "predicted": "SELECT T1.Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID = T2.Orchestra_ID GROUP BY T1.Orchestra_ID HAVING COUNT(T2.Performance_ID) > 1",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "poker_player",
+          "question": "Return the nationalities for which there are two or more people.",
+          "difficulty": "hard",
+          "gold": "SELECT Nationality FROM people GROUP BY Nationality HAVING COUNT(*)  >=  2",
+          "predicted": "SELECT Nationality FROM people GROUP BY Nationality HAVING COUNT(People_ID) >= 2",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?",
+          "difficulty": "hard",
+          "gold": "SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;",
+          "predicted": "SELECT DISTINCT T4.Model FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker JOIN car_names AS T3 ON T2.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T1.FullName = 'General Motors' OR T4.Weight > 3500",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What is the total surface area of the continents Asia and Europe?",
+          "difficulty": "hard",
+          "gold": "SELECT sum(SurfaceArea) FROM country WHERE Continent  =  \"Asia\" OR Continent  =  \"Europe\"",
+          "predicted": "SELECT SUM(SurfaceArea) FROM country WHERE Continent IN ('Asia', 'Europe')",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "Which professionals have done at least two treatments? List the professional's id, role, and first name.",
+          "difficulty": "hard",
+          "gold": "SELECT T1.professional_id ,  T1.role_code ,  T1.first_name FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2",
+          "predicted": "SELECT T1.professional_id, T1.role_code, T1.first_name FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING COUNT(T2.treatment_id) >= 2",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "Find the name of the makers that produced some cars in the year of 1970?",
+          "difficulty": "hard",
+          "gold": "SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';",
+          "predicted": "SELECT T1.FullName FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker JOIN car_names AS T3 ON T2.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T4.Year = 1970",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "What are the names of all European countries with at least 3 manufacturers?",
+          "difficulty": "hard",
+          "gold": "SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;",
+          "predicted": "SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country JOIN continents AS T3 ON T1.Continent = T3.ContId WHERE T3.Continent = 'Europe' GROUP BY T1.CountryName HAVING COUNT(T2.Id) >= 3",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the different government forms and what is the total population of each for government forms that have an average life expectancy greater than 72?",
+          "difficulty": "hard",
+          "gold": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72",
+          "predicted": "SELECT GovernmentForm, SUM(Population) FROM country WHERE GovernmentForm IN (SELECT GovernmentForm FROM country GROUP BY GovernmentForm HAVING AVG(LifeExpectancy) > 72) GROUP BY GovernmentForm",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "Find the make and production time of the cars that were produced in the earliest year?",
+          "difficulty": "extra",
+          "gold": "SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);",
+          "predicted": "SELECT T1.Make, T2.Year FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Year = (SELECT MIN(Year) FROM cars_data)",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "What is the number of cars with a greater accelerate than the one with the most horsepower?",
+          "difficulty": "extra",
+          "gold": "SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );",
+          "predicted": "SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "What are the codes of template types that are not used for any document?",
+          "difficulty": "extra",
+          "gold": "SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id",
+          "predicted": "SELECT Template_Type_Code FROM Ref_Template_Types WHERE Template_Type_Code NOT IN (SELECT Template_Type_Code FROM Templates WHERE Template_ID IN (SELECT Template_ID FROM Documents))",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Return the codes of countries that do not speak English and do not have Republics for governments.",
+          "difficulty": "extra",
+          "gold": "SELECT Code FROM country WHERE GovernmentForm != \"Republic\" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  \"English\"",
+          "predicted": "SELECT Code FROM country WHERE GovernmentForm NOT LIKE '%Republic%' AND Code NOT IN (SELECT CountryCode FROM countrylanguage WHERE Language = 'English')",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "battle_death",
+          "question": "Show names, results and bulgarian commanders of the battles with no ships lost in the 'English Channel'.",
+          "difficulty": "extra",
+          "gold": "SELECT name ,  RESULT ,  bulgarian_commander FROM battle EXCEPT SELECT T1.name ,  T1.result ,  T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.location  =  'English Channel'",
+          "predicted": "SELECT T1.name, T1.result, T1.bulgarian_commander FROM battle AS T1 LEFT JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.location != 'English Channel' OR T2.location IS NULL",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "List the names of orchestras that have no performance.",
+          "difficulty": "extra",
+          "gold": "SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)",
+          "predicted": "SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "battle_death",
+          "question": "How many battles did not lose any ship with tonnage '225'?",
+          "difficulty": "extra",
+          "gold": "SELECT count(*) FROM battle WHERE id NOT IN ( SELECT lost_in_battle FROM ship WHERE tonnage  =  '225' );",
+          "predicted": "SELECT COUNT(*) FROM battle WHERE id NOT IN (SELECT lost_in_battle FROM ship WHERE tonnage = '225')",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "pets_1",
+          "question": "Find the major and age of students who do not have a cat pet.",
+          "difficulty": "extra",
+          "gold": "SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",
+          "predicted": "SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.PetType = 'cat')",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the countries where either English or Dutch is the official language?",
+          "difficulty": "extra",
+          "gold": "SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND IsOfficial  =  \"T\" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"Dutch\" AND IsOfficial  =  \"T\"",
+          "predicted": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.IsOfficial = 'T' AND (T2.Language = 'English' OR T2.Language = 'Dutch')",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "Which shops run with no employees? Find the shop names",
+          "difficulty": "extra",
+          "gold": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+          "predicted": "SELECT Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM hiring)",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "world_1",
+          "question": "Give the names of countries with English and French as official languages.",
+          "difficulty": "extra",
+          "gold": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND T2.IsOfficial  =  \"T\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"French\" AND T2.IsOfficial  =  \"T\"",
+          "predicted": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = 'English' AND T1.Code IN (SELECT T3.CountryCode FROM countrylanguage AS T3 WHERE T3.Language = 'French' AND T3.IsOfficial = 'T') AND T2.IsOfficial = 'T'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "How many dogs have an age below the average?",
+          "difficulty": "extra",
+          "gold": "SELECT count(*) FROM Dogs WHERE age  <  ( SELECT avg(age) FROM Dogs )",
+          "predicted": "SELECT COUNT(*) FROM Dogs WHERE age < (SELECT AVG(age) FROM Dogs)",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "How many cars have a larger accelerate than the car with the largest horsepower?",
+          "difficulty": "extra",
+          "gold": "SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );",
+          "predicted": "SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Give the mean GNP and total population of nations which are considered US territory.",
+          "difficulty": "medium",
+          "gold": "SELECT avg(GNP) ,  sum(population) FROM country WHERE GovernmentForm  =  \"US Territory\"",
+          "predicted": "SELECT AVG(GNP), SUM(Population) FROM country WHERE Code2 = 'US'",
+          "execution_correct": false,
+          "exact_match": false
+        }
+      ]
+    },
+    "dynamic": {
+      "summary": {
+        "n": 50,
+        "execution_accuracy": 68.0,
+        "exact_match": 32.0,
+        "by_difficulty": {
+          "easy": {
+            "n": 12,
+            "execution_accuracy": 91.67,
+            "exact_match": 75.0
+          },
+          "medium": {
+            "n": 13,
+            "execution_accuracy": 76.92,
+            "exact_match": 23.08
+          },
+          "hard": {
+            "n": 12,
+            "execution_accuracy": 66.67,
+            "exact_match": 16.67
+          },
+          "extra": {
+            "n": 13,
+            "execution_accuracy": 38.46,
+            "exact_match": 15.38
+          }
+        },
+        "completed_generations": 50,
+        "generation_success_rate": 100.0,
+        "generated_only": {
+          "n": 50,
+          "execution_accuracy": 68.0,
+          "exact_match": 32.0,
+          "by_difficulty": {
+            "easy": {
+              "n": 12,
+              "execution_accuracy": 91.67,
+              "exact_match": 75.0
+            },
+            "medium": {
+              "n": 13,
+              "execution_accuracy": 76.92,
+              "exact_match": 23.08
+            },
+            "hard": {
+              "n": 12,
+              "execution_accuracy": 66.67,
+              "exact_match": 16.67
+            },
+            "extra": {
+              "n": 13,
+              "execution_accuracy": 38.46,
+              "exact_match": 15.38
+            }
+          }
+        },
+        "avg_latency_sec": 3.795,
+        "api_statuses": {
+          "nvidia_ok": 50
+        }
+      },
+      "cases": [
+        {
+          "db_id": "world_1",
+          "question": "How many unique languages are spoken in the world?",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT LANGUAGE) FROM countrylanguage",
+          "predicted": "SELECT COUNT(DISTINCT Language) FROM countrylanguage",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "find the minimum and maximum number of products of all stores.",
+          "difficulty": "easy",
+          "gold": "SELECT min(Number_products) ,  max(Number_products) FROM shop",
+          "predicted": "SELECT min(Number_products), max(Number_products) FROM shop",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "orchestra",
+          "question": "What are the names of conductors, sorted descending by the number of years they have worked?",
+          "difficulty": "easy",
+          "gold": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC",
+          "predicted": "SELECT Name FROM conductor ORDER BY Year_of_Work DESC",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+          "difficulty": "easy",
+          "gold": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+          "predicted": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "Count the number of distinct store locations.",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT LOCATION) FROM shop",
+          "predicted": "SELECT COUNT(DISTINCT Location) FROM shop",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "student_transcripts_tracking",
+          "question": "How many departments offer any degree?",
+          "difficulty": "easy",
+          "gold": "SELECT count(DISTINCT department_id) FROM Degree_Programs",
+          "predicted": "SELECT COUNT(DISTINCT T1.department_id) FROM Degree_Programs AS T1 INNER JOIN Departments AS T2 ON T1.department_id = T2.department_id",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "List the arrival date and the departure date for all the dogs.",
+          "difficulty": "easy",
+          "gold": "SELECT date_arrived ,  date_departed FROM Dogs",
+          "predicted": "SELECT date_arrived, date_departed FROM Dogs",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the names and areas of countries with the top 5 largest area?",
+          "difficulty": "easy",
+          "gold": "SELECT Name ,  SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 5",
+          "predicted": "SELECT Name, SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 5",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "How many templates do we have?",
+          "difficulty": "easy",
+          "gold": "SELECT count(*) FROM Templates",
+          "predicted": "SELECT count(*) FROM Templates",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "How much does the most expensive charge type costs?",
+          "difficulty": "easy",
+          "gold": "SELECT max(charge_amount) FROM Charges",
+          "predicted": "SELECT charge_type, MAX(charge_amount) FROM Charges GROUP BY charge_type ORDER BY MAX(charge_amount) DESC LIMIT 1",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "What are all the possible breed type and size type combinations?",
+          "difficulty": "easy",
+          "gold": "SELECT DISTINCT breed_code ,  size_code FROM dogs",
+          "predicted": "SELECT DISTINCT T1.breed_code, T2.size_code FROM Breeds AS T1 INNER JOIN Dogs AS T3 ON T1.breed_code = T3.breed_code INNER JOIN Sizes AS T2 ON T3.size_code = T2.size_code",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "voter_1",
+          "question": "List the vote ids, phone numbers and states of all votes.",
+          "difficulty": "easy",
+          "gold": "SELECT vote_id ,  phone_number ,  state FROM votes",
+          "predicted": "SELECT vote_id, phone_number, state FROM VOTES",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "Show the stadium name and the number of concerts in each stadium.",
+          "difficulty": "medium",
+          "gold": "SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",
+          "predicted": "SELECT T1.Name, COUNT(T2.concert_ID) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Count the number of countries in Asia.",
+          "difficulty": "medium",
+          "gold": "SELECT count(*) FROM country WHERE continent  =  \"Asia\"",
+          "predicted": "SELECT COUNT(*) FROM country WHERE Continent = 'Asia'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "student_transcripts_tracking",
+          "question": "What is the zip code for Port Chelsea?",
+          "difficulty": "medium",
+          "gold": "SELECT zip_postcode FROM Addresses WHERE city  =  'Port Chelsea'",
+          "predicted": "SELECT zip_postcode FROM Addresses WHERE city = \"Port Chelsea\"",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "singer",
+          "question": "What is the msot common singer citizenship?",
+          "difficulty": "medium",
+          "gold": "SELECT Citizenship FROM singer GROUP BY Citizenship ORDER BY COUNT(*) DESC LIMIT 1",
+          "predicted": "SELECT Citizenship FROM singer GROUP BY Citizenship ORDER BY COUNT(*) DESC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "pets_1",
+          "question": "For students who have pets, how many pets does each student have?",
+          "difficulty": "medium",
+          "gold": "SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid",
+          "predicted": "SELECT StuID, COUNT(PetID) FROM Has_Pet GROUP BY StuID",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "Show the name of the conductor that has conducted the most number of orchestras.",
+          "difficulty": "medium",
+          "gold": "SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1",
+          "predicted": "SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.Name ORDER BY COUNT(DISTINCT T2.Orchestra_ID) DESC LIMIT 1",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "tvshow",
+          "question": "What are the languages used by the least number of TV Channels and how many channels use it?",
+          "difficulty": "medium",
+          "gold": "SELECT LANGUAGE ,  count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC LIMIT 1;",
+          "predicted": "SELECT Language, COUNT(id) FROM TV_Channel GROUP BY Language ORDER BY COUNT(id) ASC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Which city is the most frequent source airport?",
+          "difficulty": "medium",
+          "gold": "SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1",
+          "predicted": "SELECT T2.City FROM flights AS T1 JOIN airports AS T2 ON T1.SourceAirport = T2.AirportCode GROUP BY T2.City ORDER BY COUNT(*) DESC LIMIT 1",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "Return the template type code of the template that is used by a document named Data base.",
+          "difficulty": "medium",
+          "gold": "SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T2.document_name  =  \"Data base\"",
+          "predicted": "SELECT T2.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID = T2.Template_ID WHERE T1.Document_Name = \"Data base\"",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What is the total population of Gelderland district?",
+          "difficulty": "medium",
+          "gold": "SELECT sum(Population) FROM city WHERE District  =  \"Gelderland\"",
+          "predicted": "SELECT SUM(Population) FROM city WHERE District = 'Gelderland'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "poker_player",
+          "question": "What are the names of people who are not from Russia?",
+          "difficulty": "medium",
+          "gold": "SELECT Name FROM people WHERE Nationality != \"Russia\"",
+          "predicted": "SELECT Name FROM people WHERE Nationality != \"Russia\"",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "concert_singer",
+          "question": "What are all distinct countries where singers above age 20 are from?",
+          "difficulty": "medium",
+          "gold": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+          "predicted": "SELECT DISTINCT Country FROM singer WHERE Age > 20",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Find the number of flights landing in the city of Aberdeen or Abilene.",
+          "difficulty": "hard",
+          "gold": "SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  \"Aberdeen\" OR T2.city  =  \"Abilene\"",
+          "predicted": "SELECT COUNT(*) FROM flights AS T1 JOIN airports AS T2 ON T1.DestAirport = T2.AirportCode WHERE T2.City = 'Aberdeen' OR T2.City = 'Abilene'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "flight_2",
+          "question": "Count the number of United Airlines flights that arrive in Aberdeen.",
+          "difficulty": "hard",
+          "gold": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  \"Aberdeen\" AND T3.Airline  =  \"United Airlines\"",
+          "predicted": "SELECT COUNT(*) FROM flights AS T1 JOIN airports AS T2 ON T1.DestAirport = T2.AirportCode WHERE T1.Airline = 'United Airlines' AND T2.City = 'Aberdeen'",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "What are the emails of the professionals living in either the state of Hawaii or the state of Wisconsin?",
+          "difficulty": "hard",
+          "gold": "SELECT email_address FROM Professionals WHERE state  =  'Hawaii' OR state  =  'Wisconsin'",
+          "predicted": "SELECT email_address FROM Professionals WHERE state = \"Hawaii\" OR state = \"Wisconsin\"",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "Which professionals have done at least two types of treatments? List the professional id and cell phone.",
+          "difficulty": "hard",
+          "gold": "SELECT T1.professional_id ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2",
+          "predicted": "SELECT T1.professional_id, T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING COUNT(DISTINCT T2.treatment_type_code) > 1",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "Show the years in which orchestras that have given more than one performance are founded.",
+          "difficulty": "hard",
+          "gold": "SELECT Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID  =  T2.Orchestra_ID GROUP BY T2.Orchestra_ID HAVING COUNT(*)  >  1",
+          "predicted": "SELECT T1.Year_of_Founded FROM orchestra AS T1 JOIN performance AS T2 ON T1.Orchestra_ID = T2.Orchestra_ID GROUP BY T1.Orchestra_ID HAVING COUNT(T2.Performance_ID) > 1",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "poker_player",
+          "question": "Return the nationalities for which there are two or more people.",
+          "difficulty": "hard",
+          "gold": "SELECT Nationality FROM people GROUP BY Nationality HAVING COUNT(*)  >=  2",
+          "predicted": "SELECT Nationality FROM people GROUP BY Nationality HAVING COUNT(*) >= 2",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "car_1",
+          "question": "Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?",
+          "difficulty": "hard",
+          "gold": "SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;",
+          "predicted": "SELECT DISTINCT T1.Model FROM model_list AS T1 INNER JOIN car_makers AS T2 ON T1.Maker = T2.Id INNER JOIN car_names AS T3 ON T1.Model = T3.Model INNER JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T2.FullName = 'General Motors' OR T4.Weight > 3500",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What is the total surface area of the continents Asia and Europe?",
+          "difficulty": "hard",
+          "gold": "SELECT sum(SurfaceArea) FROM country WHERE Continent  =  \"Asia\" OR Continent  =  \"Europe\"",
+          "predicted": "SELECT SUM(SurfaceArea) FROM country WHERE Continent IN ('Asia', 'Europe')",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "Which professionals have done at least two treatments? List the professional's id, role, and first name.",
+          "difficulty": "hard",
+          "gold": "SELECT T1.professional_id ,  T1.role_code ,  T1.first_name FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2",
+          "predicted": "SELECT T1.professional_id, T1.role_code, T1.first_name FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id GROUP BY T1.professional_id HAVING COUNT(*) >= 2",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "car_1",
+          "question": "Find the name of the makers that produced some cars in the year of 1970?",
+          "difficulty": "hard",
+          "gold": "SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';",
+          "predicted": "SELECT T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker JOIN car_names AS T3 ON T2.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T4.Year = 1970",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "What are the names of all European countries with at least 3 manufacturers?",
+          "difficulty": "hard",
+          "gold": "SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;",
+          "predicted": "SELECT T2.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country JOIN continents AS T3 ON T1.Continent = T3.ContId WHERE T3.Continent = 'Europe' GROUP BY T2.CountryName HAVING COUNT(*) >= 3",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the different government forms and what is the total population of each for government forms that have an average life expectancy greater than 72?",
+          "difficulty": "hard",
+          "gold": "SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72",
+          "predicted": "SELECT GovernmentForm, SUM(Population) FROM country WHERE GovernmentForm IN (SELECT GovernmentForm FROM country GROUP BY GovernmentForm HAVING AVG(LifeExpectancy) > 72) GROUP BY GovernmentForm",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "Find the make and production time of the cars that were produced in the earliest year?",
+          "difficulty": "extra",
+          "gold": "SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);",
+          "predicted": "SELECT T1.Make, T2.Year FROM car_names AS T1 INNER JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.Year ASC LIMIT 1",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "What is the number of cars with a greater accelerate than the one with the most horsepower?",
+          "difficulty": "extra",
+          "gold": "SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );",
+          "predicted": "SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "cre_Doc_Template_Mgt",
+          "question": "What are the codes of template types that are not used for any document?",
+          "difficulty": "extra",
+          "gold": "SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id",
+          "predicted": "SELECT Template_Type_Code FROM Ref_Template_Types WHERE Template_Type_Code NOT IN (SELECT Template_Type_Code FROM Templates WHERE Template_ID IN (SELECT Template_ID FROM Documents))",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Return the codes of countries that do not speak English and do not have Republics for governments.",
+          "difficulty": "extra",
+          "gold": "SELECT Code FROM country WHERE GovernmentForm != \"Republic\" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  \"English\"",
+          "predicted": "SELECT T1.Code FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language != 'English' AND T1.GovernmentForm != 'Republic'",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "battle_death",
+          "question": "Show names, results and bulgarian commanders of the battles with no ships lost in the 'English Channel'.",
+          "difficulty": "extra",
+          "gold": "SELECT name ,  RESULT ,  bulgarian_commander FROM battle EXCEPT SELECT T1.name ,  T1.result ,  T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.location  =  'English Channel'",
+          "predicted": "SELECT T1.name, T1.result, T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.location != 'English Channel'",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "orchestra",
+          "question": "List the names of orchestras that have no performance.",
+          "difficulty": "extra",
+          "gold": "SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)",
+          "predicted": "SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "battle_death",
+          "question": "How many battles did not lose any ship with tonnage '225'?",
+          "difficulty": "extra",
+          "gold": "SELECT count(*) FROM battle WHERE id NOT IN ( SELECT lost_in_battle FROM ship WHERE tonnage  =  '225' );",
+          "predicted": "SELECT COUNT(*) FROM battle WHERE id NOT IN (SELECT lost_in_battle FROM ship WHERE tonnage = '225')",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "pets_1",
+          "question": "Find the major and age of students who do not have a cat pet.",
+          "difficulty": "extra",
+          "gold": "SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",
+          "predicted": "SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.PetType = \"Cat\")",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "What are the countries where either English or Dutch is the official language?",
+          "difficulty": "extra",
+          "gold": "SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND IsOfficial  =  \"T\" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"Dutch\" AND IsOfficial  =  \"T\"",
+          "predicted": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE (T2.Language = \"English\" OR T2.Language = \"Dutch\") AND T2.IsOfficial = \"T\"",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "employee_hire_evaluation",
+          "question": "Which shops run with no employees? Find the shop names",
+          "difficulty": "extra",
+          "gold": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+          "predicted": "SELECT Name FROM shop WHERE Shop_ID NOT IN (SELECT Shop_ID FROM hiring)",
+          "execution_correct": true,
+          "exact_match": true
+        },
+        {
+          "db_id": "world_1",
+          "question": "Give the names of countries with English and French as official languages.",
+          "difficulty": "extra",
+          "gold": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" AND T2.IsOfficial  =  \"T\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"French\" AND T2.IsOfficial  =  \"T\"",
+          "predicted": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"English\" AND T1.Code IN (SELECT T1.Code FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = \"French\" AND T2.IsOfficial = 1) AND T2.IsOfficial = 1",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "dog_kennels",
+          "question": "How many dogs have an age below the average?",
+          "difficulty": "extra",
+          "gold": "SELECT count(*) FROM Dogs WHERE age  <  ( SELECT avg(age) FROM Dogs )",
+          "predicted": "SELECT COUNT(*) FROM Dogs WHERE age < (SELECT AVG(age) FROM Dogs)",
+          "execution_correct": true,
+          "exact_match": false
+        },
+        {
+          "db_id": "car_1",
+          "question": "How many cars have a larger accelerate than the car with the largest horsepower?",
+          "difficulty": "extra",
+          "gold": "SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );",
+          "predicted": "SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)",
+          "execution_correct": false,
+          "exact_match": false
+        },
+        {
+          "db_id": "world_1",
+          "question": "Give the mean GNP and total population of nations which are considered US territory.",
+          "difficulty": "medium",
+          "gold": "SELECT avg(GNP) ,  sum(population) FROM country WHERE GovernmentForm  =  \"US Territory\"",
+          "predicted": "SELECT AVG(GNP), SUM(Population) FROM country WHERE Code2 = 'US'",
+          "execution_correct": false,
+          "exact_match": false
+        }
+      ]
+    }
+  }
+}
